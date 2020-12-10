@@ -29,12 +29,6 @@ RSpec.describe User, type: :model do
       expect(another_user.errors.full_messages).to include("Email has already been taken")
     end
 
-    it "passwordが半角の英数含む6文字以上であれば登録できること" do
-      @user.password = "aaaaa1"
-      @user.password_confirmation = "aaaaa1"
-      expect(@user).to be_valid
-    end
-
     it "passwordが空では登録できないこと" do
       @user.password = nil
       @user.valid?
@@ -51,6 +45,20 @@ RSpec.describe User, type: :model do
     it "passwordが英数(半角)を含めない場合は登録できないこと" do
       @user.password = "aaaaaa"
       @user.password_confirmation = "aaaaaa"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
+    end
+
+    it "passwordが半角数字だけは登録できないこと" do
+      @user.password = "123456"
+      @user.password_confirmation = "123456"
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
+    end
+
+    it "passwordが全角では登録できないこと" do
+      @user.password = "ｔｅｓｔ１２"
+      @user.password_confirmation = "ｔｅｓｔ１２"
       @user.valid?
       expect(@user.errors.full_messages).to include("Password Include both letters and numbers")
     end
