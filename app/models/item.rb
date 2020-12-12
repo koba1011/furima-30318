@@ -13,11 +13,11 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :describe
-    validates :shipping_fee_id
-    validates :prefecture_id
-    validates :shipping_day_id
     validates :price
   end
   validates :category_id, numericality: { other_than: 1 }
   validates :condition_id, numericality: { other_than: 1 }
+  validates :shipping_fee_id, numericality: { other_than: 1 }
+  validates :prefecture_id, numericality: { other_than: 1 }
+  validates :shipping_day_id, numericality: { other_than: 1 }
 end
