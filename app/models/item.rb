@@ -19,5 +19,5 @@ class Item < ApplicationRecord
   validates :condition_id, numericality: { other_than: 1 }
   validates :shipping_fee_id, numericality: { other_than: 1 }
   validates :prefecture_id, numericality: { other_than: 1 }
-  validates :shipping_days_id, numericality: { other_than: 1 }
+  validates :shipping_day_id, numericality: { other_than: 1 }
 end
