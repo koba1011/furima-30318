@@ -13,11 +13,13 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :describe
-    validates :price
+    validates :price, format: { with: /\A[0-9]+\z/, message: "Half-width number" }, inclusion: { in: 300..9999999, message: "Out of setting range"}
   end
-  validates :category_id, numericality: { other_than: 1 }
-  validates :condition_id, numericality: { other_than: 1 }
-  validates :shipping_fee_id, numericality: { other_than: 1 }
-  validates :prefecture_id, numericality: { other_than: 1 }
-  validates :shipping_day_id, numericality: { other_than: 1 }
+  with_options numericality: { other_than: 1, message: "Select" } do
+    validates :category_id
+    validates :condition_id
+    validates :shipping_fee_id
+    validates :prefecture_id
+    validates :shipping_day_id
+  end
 end
