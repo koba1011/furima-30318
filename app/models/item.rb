@@ -22,6 +22,6 @@ class Item < ApplicationRecord
     validates :condition_id
     validates :shipping_fee_id
     validates :prefecture_id
-    validates :shipping_days_id
+    validates :shipping_day_id
   end
 end
