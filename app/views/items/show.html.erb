@@ -76,9 +76,55 @@
     </div>
   </div>
   <%# /商品の概要 %>
+  
+  <%# コメントの表示 %>
+  <div class="comment-box">
+    <% @comments.each do |comment| %>
+    <% if @comments && user_signed_in? %>
+      <% if comment.user.id == current_user.id %>
+        <div class="balloon-set-box right">
+          <div class="box-right">
+            <div class="icon-box">
+              <%=image_tag "item-sample.png", class:"icon" %>
+            </div>
+            <% if current_user.id == @item.user_id %>
+              <div class="seller-right">
+                <%= link_to "出品者", "/users/#{comment.user.id}", class: :seller_user %>
+              </div>
+            <% end %>
+          </div>
+          <div class="comment-user">
+            <div class="user-box-right">
+              <%= link_to "#{comment.user.nickname}", "/users/#{comment.user.id}", class: :comment_user_right %>
+            </div>
+            <div class="balloon-right"><%= comment.text %></div>
+          </div>
+        </div>
+      <% else %>
+        <div class="balloon-set-box left">
+          <div class="box-left">
+            <div class="icon-box">
+              <%=image_tag "item-sample.png", class:"icon" %>
+            </div>
+            <% if comment.user.id == @item.user_id %>
+              <div class="seller-left">
+                <%= link_to "出品者", "/users/#{comment.user.id}", class: :seller_user %>
+              </div>
+            <% end %>
+          </div>
+          <div class="comment-user">
+            <div class="user-box-left">
+              <%= link_to "#{comment.user.nickname}", "/users/#{comment.user.id}", class: :comment_user_left %>
+            </div>
+            <div class="balloon-left"><%= comment.text %></div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    <% end %>
+    <%# /コメントの表示 %>
 
-  <%= form_with(model: [@item, @comment], local: true) do |f| %>
-    <div class="comment-box">
+    <%= form_with(model: [@item, @comment], local: true) do |f| %>
       <%= f.text_area :text, class: "comment-text" %>
       <p class="comment-warn">
         相手のことを考え丁寧なコメントを心がけましょう。
@@ -89,8 +135,8 @@
         <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
         コメントする
       <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
