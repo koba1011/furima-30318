@@ -97,7 +97,10 @@
             <div class="user-box-right">
               <%= link_to "#{comment.user.nickname}", "/users/#{comment.user.id}", class: :comment_user_right %>
             </div>
-            <div class="balloon-right"><%= comment.text %></div>
+            <div class="balloon-right">
+               <%= comment.text %>
+               <%= link_to image_tag("delete-box.png", class:"icon-delete"), item_comment_path(comment.item.id, comment.id), method: :delete %>
+            </div>
           </div>
         </div>
       <% else %> <%# ログアウト状態、または自分のコメントでない場合は左側に表示される%>
