@@ -130,7 +130,7 @@
     <%# コメント投稿フォーム %>
     <%= form_with(model: [@item, @comment], local: true) do |f| %>
       <% if user_signed_in? %>
-        <% if @item.purchase.blank? %>
+        <% if @item.purchase.blank? %> <%# 商品が売れていない場合はコメントが投稿できる %> 
           <%= f.text_area :text, class: "comment-text" %>
           <p class="comment-warn">
             相手のことを考え丁寧なコメントを心がけましょう。
@@ -141,7 +141,7 @@
             <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
             コメントする
           <% end %>
-        <% else %>
+        <% else %> <%# 商品が売却済みの場合は表示を変える %>
           <%= f.text_area :text, class: "comment-text-soldout" %>
           <p class="comment-warn">
             相手のことを考え丁寧なコメントを心がけましょう。
