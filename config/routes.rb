@@ -6,4 +6,5 @@ Rails.application.routes.draw do
     resources :purchases, only: [:index, :create]
     resources :comments, only: [:create, :destroy]
   end
+  resources :users, only: :show
 end
