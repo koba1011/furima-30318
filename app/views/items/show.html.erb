@@ -80,12 +80,12 @@
   <%# コメントの表示 %>
   <div class="comment-box">
     <% @comments.each do |comment| %>
-    <% if @comments && user_signed_in? %>
-      <% if comment.user.id == current_user.id %>
+    <% if @comments %>
+      <% if user_signed_in? && comment.user.id == current_user.id %> <%# ログイン状態かつ自分自身のコメントは右側に表示されるよう分岐 %>
         <div class="balloon-set-box right">
           <div class="box-right">
             <div class="icon-box">
-              <%=image_tag "item-sample.png", class:"icon" %>
+              <%=link_to image_tag("item-sample.png", class:"icon"), "/users/#{comment.user.id}" %>
             </div>
             <% if current_user.id == @item.user_id %>
               <div class="seller-right">
@@ -100,11 +100,11 @@
             <div class="balloon-right"><%= comment.text %></div>
           </div>
         </div>
-      <% else %>
+      <% else %> <%# ログアウト状態、または自分のコメントでない場合は左側に表示される%>
         <div class="balloon-set-box left">
           <div class="box-left">
             <div class="icon-box">
-              <%=image_tag "item-sample.png", class:"icon" %>
+              <%=link_to image_tag("item-sample.png", class:"icon"), "/users/#{comment.user.id}" %>
             </div>
             <% if comment.user.id == @item.user_id %>
               <div class="seller-left">
@@ -123,22 +123,35 @@
     <% end %>
     <% end %>
     <%# /コメントの表示 %>
-
+    
+    <%# コメント投稿フォーム %>
     <%= form_with(model: [@item, @comment], local: true) do |f| %>
       <% if user_signed_in? %>
-        <%= f.text_area :text, class: "comment-text" %>
-        <p class="comment-warn">
-          相手のことを考え丁寧なコメントを心がけましょう。
-          <br>
-          不快な言葉遣いなどは利用制限や退会処分となることがあります。
-        </p>
-        <%= button_tag type: :submit, class: "comment-btn" do %>
-          <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-          コメントする
+        <% if @item.purchase.blank? %>
+          <%= f.text_area :text, class: "comment-text" %>
+          <p class="comment-warn">
+            相手のことを考え丁寧なコメントを心がけましょう。
+            <br>
+            不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          </p>
+          <%= button_tag type: :submit, class: "comment-btn" do %>
+            <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+            コメントする
+          <% end %>
+        <% else %>
+          <%= f.text_area :text, class: "comment-text-soldout" %>
+          <p class="comment-warn">
+            相手のことを考え丁寧なコメントを心がけましょう。
+            <br>
+            不快な言葉遣いなどは利用制限や退会処分となることがあります。
+          </p>
+          <%= button_tag "売り切れのためコメントできません", class: "soldout-message" %>
         <% end %>
       <% end %>
     <% end %>
   </div>
+  <%# /コメント投稿フォーム %>
+
   <div class="links">
     <a href="#" class="change-item-btn">
       ＜ 前の商品
