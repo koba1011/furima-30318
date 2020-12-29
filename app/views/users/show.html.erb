@@ -1,0 +1,30 @@
+<%= render "shared/header" %>
+
+<div class="user-show">
+  <div class="user-box">
+    <div class="user-content">
+      <%= image_tag "user-sample-image.png", class:"user-box-img" %>
+      <div class="user-img-icon">
+        <%= image_tag "profile_icon.png", class:"user-icon"%>
+      </div>
+      <div class="user-name">
+        <%= @user.nickname %>
+          <div class="item-count">
+            <p>出品数 <%= @user.items.count %></p>
+          </div>
+      </div>
+    </div>
+    <div class="user-profile">
+      <p>よろしくお願いいたします。</p>
+    </div>
+    <b class="page-heading">
+      <%= "#{@user.nickname}の商品"%>
+    </b>
+    <div class="user-item-contents">
+      <ul class="user-item-lists">
+        <%= render partial: 'items/item', collection: @items %>
+      </ul>
+    </div>
+  </div>
+</div>
+<%= render "shared/footer" %>
