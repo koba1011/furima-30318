@@ -1,0 +1,11 @@
+
+.item-lists {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.search-blank {
+  padding: 10vh;
+}
