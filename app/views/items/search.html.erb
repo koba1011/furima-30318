@@ -1,0 +1,14 @@
+<%= render "shared/header" %>
+  <ul class='item-lists'>
+    <% if @items.blank? %>
+      <div class="search-blank">
+        <p>該当する商品が見つかりません。検索条件を変えて、再度お試しください。</p>
+      </div>
+    <% else %>
+      <%= render partial: "item", collection: @items %>
+    <% end %>
+  </ul>
+<%= render "shared/footer" %>
+
+
+
