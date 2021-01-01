@@ -80,11 +80,10 @@
 
 .user-nickname {
   text-decoration: none;
-  margin-right: 3vw;
   color: #333333;
   font-weight: bold;
+  margin: 20px;
 }
-
 
 .logout {
   text-decoration: none;
@@ -101,4 +100,51 @@
 .sign-up {
   text-decoration: none;
   color: #333333;
+}
+
+.sub-list {
+  position: absolute;
+  top: 95px;
+  right: 20vw;
+  display: none;
+}
+
+
+.main-list {
+  display: inline-block;
+  margin-right: 25px;
+}
+
+.main-list:hover .sub-list {
+  display: block;
+}
+
+.main-list:hover .user-nickname {
+  color: #3ccace;
+}
+
+.main-list:hover .submenu-logo {
+  color: rgba(68, 68, 68, 0.397);
+}
+
+.sub-name {
+  display: block;
+}
+
+.sub-title {
+  background-color: #fff;
+  color: #444;
+  display: block;
+  text-align: center;
+  border: 1px solid #3ccace;
+  padding: 5px;
+}
+
+.sub-title:hover {
+  color: rgba(68, 68, 68, 0.329);
+}
+
+.submenu-logo {
+  font-size: 14px;
+  margin-left: -15px;
 }
