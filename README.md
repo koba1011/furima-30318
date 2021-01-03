@@ -78,3 +78,26 @@
 
 - belongs_to :user
 - belongs_to :item
+
+## profiles テーブル
+
+| Column      | Type       | Options           |
+| ----------- | ---------- | ----------------- |
+| profile     | text       |                   |
+| user        | references | foreign_key: true |
+
+### Association
+
+- belongs_to :user
+
+## favorites table
+
+| Colum | Type       | Options           |
+| ----- | ---------- | ----------------- |
+| user  | references | foreign_key: true |
+| item  | references | foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :item
