@@ -1,0 +1,40 @@
+<div class="profile-new">
+  <div class="profile-box">
+    <div class="profile-main">
+      <h2 class="profile-title">プロフィール</h2>
+      <%= form_with model: @profile, local: true do |f| %>
+        <div class="profile-img-upload">
+          <div class="profile-bold-text">
+            プロフィール画像
+          </div>
+          <div class="click-upload">
+            <p>
+              クリックしてファイルをアップロード
+            </p>
+            <%= f.file_field :icon_image, id:"item-image" %>
+          </div>
+          <div class="profile-bold-text">
+            ヘッダー画像
+          </div>
+          <div class="click-upload">
+            <p>
+              クリックしてファイルをアップロード
+            </p>
+            <%= f.file_field :header_image, id:"profile-image" %>
+          </div>
+        </div>
+        <div class="new-profiles">
+          <div class="profiles-explain">
+            <div class="profile-bold-text">
+              自己紹介（1,000文字まで）
+            </div>
+            <%= f.text_area :text, class:"profiles-text", id:"profile-info", placeholder:"(例) こんにちは！ご覧いただきありがとうございます！カジュアルな服を中心に出品しています。気持ちよくお取引ができるよう心がけていますので、商品や発送方法などご質問がありましたらお気軽にどうぞ♪" ,rows:"7" ,maxlength:"1000" %>
+          </div>
+        </div>
+        <div class="profile-btn-contents">
+          <%= f.submit "変更する" ,class:"profile-btn" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

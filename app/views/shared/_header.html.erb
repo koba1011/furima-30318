@@ -16,7 +16,18 @@
     </ul>
     <ul class='lists-right'>
       <% if user_signed_in? %>
-        <li><%= link_to current_user.nickname, "#", class: "user-nickname" %></li> 
+        <li class="main-list"><%= link_to current_user.nickname, user_path(current_user.id), class: "user-nickname" %><span class="submenu-logo">▼</span>
+          <ul class="sub-list">
+            <li class="sub-name">
+              <% if current_user.profile.blank? %>
+                <%= link_to 'プロフィール設定', new_profile_path, class: "sub-title"%>
+              <% else %>
+                <%= link_to 'プロフィール設定', edit_profile_path(current_user.profile.id), class: "sub-title"%>
+              <% end %>
+            </li>
+            <li class="sub-name"><%= link_to 'お気に入り一覧', "#", class: "sub-title" %></li>
+          </ul>
+        </li>
         <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logout" %></li>
       <% else %>
         <li><%= link_to 'ログイン', new_user_session_path, class: "login" %></li>

@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :items
   has_many :purchases
   has_many :comments
+  has_one :profile
 
   VALID_NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/
   VALID_NAME_KANA_REGEX = /\A[ァ-ヶー－]+\z/
