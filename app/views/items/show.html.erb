@@ -85,7 +85,11 @@
         <div class="balloon-set-box right">
           <div class="box-right">
             <div class="icon-box">
-              <%=link_to image_tag("item-sample.png", class:"icon"), "/users/#{comment.user.id}" %>
+              <% if comment.user.profile.blank? || comment.user.profile.icon_image.blank? %>
+                <%= link_to image_tag("profile_icon.png", class:"icon"), "/users/#{comment.user.id}" %>
+              <% else %>
+                <%= link_to image_tag(comment.user.profile.icon_image, class:"icon"), "/users/#{comment.user.id}" %>
+              <% end %>
             </div>
             <% if current_user.id == @item.user_id %>
               <div class="seller-right">
@@ -107,7 +111,11 @@
         <div class="balloon-set-box left">
           <div class="box-left">
             <div class="icon-box">
-              <%=link_to image_tag("item-sample.png", class:"icon"), "/users/#{comment.user.id}" %>
+              <% if comment.user.profile.blank? || comment.user.profile.icon_image.blank? %>
+                <%= link_to image_tag("profile_icon.png", class:"icon"), "/users/#{comment.user.id}" %>
+              <% else %>
+                <%= link_to image_tag(comment.user.profile.icon_image, class:"icon"), "/users/#{comment.user.id}" %>
+              <% end %>
             </div>
             <% if comment.user.id == @item.user_id %>
               <div class="seller-left">
