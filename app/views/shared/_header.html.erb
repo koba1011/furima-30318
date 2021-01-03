@@ -18,7 +18,13 @@
       <% if user_signed_in? %>
         <li class="main-list"><%= link_to current_user.nickname, user_path(current_user.id), class: "user-nickname" %><span class="submenu-logo">▼</span>
           <ul class="sub-list">
-            <li class="sub-name"><%= link_to 'プロフィール設定', new_profile_path, class: "sub-title"%></li>
+            <li class="sub-name">
+              <% if current_user.profile.blank? %>
+                <%= link_to 'プロフィール設定', new_profile_path, class: "sub-title"%>
+              <% else %>
+                <%= link_to 'プロフィール設定', edit_profile_path(current_user.profile.id), class: "sub-title"%>
+              <% end %>
+            </li>
             <li class="sub-name"><%= link_to '住所登録', "#", class: "sub-title" %></li>
           </ul>
         </li>
