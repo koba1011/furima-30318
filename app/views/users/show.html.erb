@@ -3,9 +3,17 @@
 <div class="user-show">
   <div class="user-box">
     <div class="user-content">
-      <%= image_tag @user.profile.header_image, class:"user-box-img" %>
+      <% if @user.profile.blank? || @user.profile.header_image.blank? %>
+        <%= image_tag "user-sample-image.png", class:"user-box-img" %>
+      <% else %>
+        <%= image_tag @user.profile.header_image, class:"user-box-img" %>
+      <% end %>
       <div class="user-img-icon">
-        <%= image_tag @user.profile.profile_image, class:"user-icon"%>
+        <% if @user.profile.blank? || @user.profile.icon_image.blank? %>
+          <%= image_tag "profile_icon.png", class:"user-icon" %>
+        <% else %>
+          <%= image_tag @user.profile.icon_image, class:"user-icon"%>
+        <% end %>
       </div>
       <div class="user-name">
         <%= @user.nickname %>
@@ -15,10 +23,16 @@
       </div>
     </div>
     <div class="user-profile">
-      <p><%= @user.profile.text %></p>
+      <% if @user.profile.blank? || @user.profile.text.blank? %>
+        <p>よろしくお願いします！</p>
+      <% else %>
+        <p><%=safe_join(@user.profile.text.split("\n"),tag(:br)) %></p>
+      <% end %>
     </div>
     <b class="page-heading">
-      <%= "#{@user.nickname}の商品"%>
+      <% if @user.items.present? %>
+        <%= "#{@user.nickname}の商品"%>
+      <% end %>
     </b>
     <div class="user-item-contents">
       <ul class="user-item-lists">
@@ -27,4 +41,5 @@
     </div>
   </div>
 </div>
+
 <%= render "shared/footer" %>
