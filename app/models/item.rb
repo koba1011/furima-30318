@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   has_one_attached :image
   has_one :purchase
   has_many :comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -33,5 +34,9 @@ class Item < ApplicationRecord
     else
       Item.all
     end
+  end
+
+  def favorite_by?(user)
+    favorites.where(user_id: user.id).exists?
   end
 end

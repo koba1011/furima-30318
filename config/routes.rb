@@ -5,10 +5,15 @@ Rails.application.routes.draw do
   resources :items do
     resources :purchases, only: [:index, :create]
     resources :comments, only: [:create, :destroy]
+    resources :favorites, only: [:create, :show, :destroy]
     collection do
       get 'search'
     end
   end
-  resources :users, only: :show
+  resources :users, only: :show do
+    collection do
+      get 'favorites'
+    end
+  end
   resources :profiles, only: [:new, :create, :edit, :update]
 end

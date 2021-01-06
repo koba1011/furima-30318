@@ -1,0 +1,16 @@
+<%= render "shared/header" %>
+
+<div class="item-show">
+  <div class= "item-box">
+    <p class="favorite-list">お気に入り一覧</p>
+    <ul class='item-lists'>
+      <% if @items.present?%>
+        <%= render partial: 'items/item', collection: @items %>
+      <% else %>
+        <h2>お気に入りがありません</h2>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<%= render "shared/footer" %>
