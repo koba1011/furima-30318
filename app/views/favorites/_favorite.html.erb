@@ -1,0 +1,18 @@
+<% if user_signed_in? %>
+  <% if item.favorite_by?(current_user) %>
+    <p class="favorite_btn_delete">
+      <%= image_tag "star_kiiro.png" ,class:"favorite-star-icon-delete" ,width:"20",height:"20" %>
+      <%=link_to "お気に入り", item_favorite_path(item_id: item.id, id: item.favorites[0].id), method: :delete, remote: true, class: "favorite-title-delete" %>
+      <%= item.favorites.count%>
+    </p>
+  <% else %>
+    <p class="favorite_btn">
+      <%= image_tag "星アイコン8.png" ,class:"favorite-star-icon" ,width:"20",height:"20"%>
+      <%=link_to "お気に入り", item_favorites_path(item.id), method: :post, remote: true, class: "favorite-title" %>
+      <%= item.favorites.count %>
+    </p>
+  <% end %>
+<% else %>
+    <p><span>お気に入り数: </span><%= item.favorites.count %></p>
+<% end %>
+

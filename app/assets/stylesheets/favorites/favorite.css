@@ -1,0 +1,51 @@
+
+.favorite_btn_delete {
+  border-radius: 40px;
+  min-width: 200px;
+  width: 15vw;
+  height: 6vh;
+  min-width: 200px;
+  color: rgb(249, 75, 0);
+  border: 2px solid #ffb340;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.favorite_btn {
+  border-radius: 40px;
+  min-width: 200px;
+  width: 15vw;
+  height: 6vh;
+  min-width: 200px;
+  color: rgb(249, 75, 0);
+  border: 2px solid lightgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.favorite-title {
+  background-color: #fff;
+  color: #444;
+  text-align: center;
+  padding: 8px 13px;
+
+}
+
+.favorite-title-delete {
+  background-color: #fff;
+  color: rgb(249, 75, 0);
+  text-align: center;
+  padding: 8px 13px;
+}
+
+.favorite-star-icon {
+  margin-right: 5px;
+}
+
+.favorite-star-icon-delete {
+  margin-right: 5px;
+}
